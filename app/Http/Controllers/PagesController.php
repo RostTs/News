@@ -8,7 +8,7 @@ use App\Models\Category;
 class PagesController extends Controller
 {
     public function index(){
-        return view('index');
+        return redirect('/news');
     }
 
     public function manager(){

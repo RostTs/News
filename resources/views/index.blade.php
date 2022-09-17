@@ -18,12 +18,12 @@
                 <div class="card mb-4">
                     <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
                     <div class="card-body">
-                        <div class="small text-muted">{{ date('jS M Y',strtotime($news[0]->created)) }}</div>
+                        <div class="small text-muted">{{ date('jS M Y',$news[0]->created) }}</div>
                         <a href="/news/{{ $news[0]->slug }}"><h2 class="card-title">{{ $news[0]->title }}</h2></a>
                         <span class="card-subtitle h5">Category: 
                             <span class="card-subtitle h5 text-primary">{{ $news[0]->category->title }}</span>
                         </span>
-                        <p class="card-text">{{ $news[0]->description }}</p>
+                        <p class="card-text">{{ substr($news[0]->description,0,100) }}</p>
                     </div>
                 </div>
 
@@ -33,7 +33,7 @@
                             <div class="card mb-4">
                                 <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
                                 <div class="card-body">
-                                    <div class="small text-muted">{{ date('jS M Y',strtotime($news[$newsNumber]->created)) }}</div>
+                                    <div class="small text-muted">{{ date('jS M Y',$news[$newsNumber]->created) }}</div>
                                     <a href="/news/{{ $news[$newsNumber]->slug }}"><h2 class="card-title h4">{{ $news[$newsNumber]->title }}</h2></a>
                                     <span class="card-subtitle h5">Category: 
                                         <span class="card-subtitle h5 text-primary">{{ $news[$newsNumber]->category->title }}</span>
@@ -60,17 +60,6 @@
             </div>
 
             <div class="col-lg-4">
-
-                <div class="card mb-4">
-                    <div class="card-header">Search</div>
-                    <div class="card-body">
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                            <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="card mb-4">
                     <div class="card-header">Categories</div>
                     <div class="card-body">
@@ -78,10 +67,15 @@
                             @foreach ($categories as $category)
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">{{$category->title}}</a></li>
+                                        <li><a href="/news?category={{$category->title}}">{{$category->title}}</a></li>
                                     </ul>
                                 </div>    
                             @endforeach
+                            <div class="col-sm-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li><a href="/news">all</a></li>
+                                </ul>
+                            </div> 
                         </div>
                     </div>
                 </div>

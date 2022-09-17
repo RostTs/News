@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,5 @@ Route::get('/', [PagesController::class,'index']);
 Route::get('/manager', [PagesController::class,'manager']);
 
 Route::resource('/news', NewsController::class);
+Route::resource('/categories', CategoriesController::class);
 

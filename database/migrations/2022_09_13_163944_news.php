@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\News;
 
 return new class extends Migration
 {
@@ -18,11 +19,13 @@ return new class extends Migration
             $table->string('title');
             $table->longText('description');
             $table->string('slug');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
+
+        News::factory()->create();
     }
 
     /**
